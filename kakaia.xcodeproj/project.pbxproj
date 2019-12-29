@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4C0FC69A23B88B610081E77E /* kakaia WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4C0FC69923B88B610081E77E /* kakaia WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C0FC6A023B88B610081E77E /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FC69E23B88B610081E77E /* Interface.storyboard */; };
+		4C0FC6A223B88B620081E77E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FC6A123B88B620081E77E /* Assets.xcassets */; };
+		4C0FC6A923B88B620081E77E /* kakaia WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 4C0FC6A823B88B620081E77E /* kakaia WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C0FC6B023B88B620081E77E /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6AF23B88B620081E77E /* HostingController.swift */; };
+		4C0FC6B223B88B620081E77E /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6B123B88B620081E77E /* ExtensionDelegate.swift */; };
+		4C0FC6B423B88B620081E77E /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6B323B88B620081E77E /* NotificationController.swift */; };
+		4C0FC6B623B88B620081E77E /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6B523B88B620081E77E /* NotificationView.swift */; };
+		4C0FC6B823B88B620081E77E /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6B723B88B620081E77E /* ComplicationController.swift */; };
+		4C0FC6BA23B88B630081E77E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FC6B923B88B630081E77E /* Assets.xcassets */; };
+		4C0FC6BD23B88B630081E77E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FC6BC23B88B630081E77E /* Preview Assets.xcassets */; };
+		4C0FC6CD23B8F1560081E77E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6AD23B88B620081E77E /* ContentView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4C0FC69B23B88B610081E77E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C0FC68F23B88B610081E77E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C0FC69823B88B610081E77E;
+			remoteInfo = "kakaia WatchKit App";
+		};
+		4C0FC6AA23B88B620081E77E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4C0FC68F23B88B610081E77E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4C0FC6A723B88B620081E77E;
+			remoteInfo = "kakaia WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4C0FC6C523B88B630081E77E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				4C0FC6A923B88B620081E77E /* kakaia WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C0FC6C923B88B630081E77E /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				4C0FC69A23B88B610081E77E /* kakaia WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4C0FC69523B88B610081E77E /* kakaia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kakaia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C0FC69923B88B610081E77E /* kakaia WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "kakaia WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C0FC69F23B88B610081E77E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		4C0FC6A123B88B620081E77E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C0FC6A323B88B620081E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C0FC6A823B88B620081E77E /* kakaia WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "kakaia WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C0FC6AD23B88B620081E77E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4C0FC6AF23B88B620081E77E /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		4C0FC6B123B88B620081E77E /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		4C0FC6B323B88B620081E77E /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		4C0FC6B523B88B620081E77E /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		4C0FC6B723B88B620081E77E /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		4C0FC6B923B88B630081E77E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C0FC6BC23B88B630081E77E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4C0FC6BE23B88B630081E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C0FC6BF23B88B630081E77E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4C0FC6A523B88B620081E77E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C0FC68E23B88B610081E77E = {
+			isa = PBXGroup;
+			children = (
+				4C0FC69D23B88B610081E77E /* kakaia WatchKit App */,
+				4C0FC6AC23B88B620081E77E /* kakaia WatchKit Extension */,
+				4C0FC69623B88B610081E77E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4C0FC69623B88B610081E77E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4C0FC69523B88B610081E77E /* kakaia.app */,
+				4C0FC69923B88B610081E77E /* kakaia WatchKit App.app */,
+				4C0FC6A823B88B620081E77E /* kakaia WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4C0FC69D23B88B610081E77E /* kakaia WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				4C0FC69E23B88B610081E77E /* Interface.storyboard */,
+				4C0FC6A123B88B620081E77E /* Assets.xcassets */,
+				4C0FC6A323B88B620081E77E /* Info.plist */,
+			);
+			path = "kakaia WatchKit App";
+			sourceTree = "<group>";
+		};
+		4C0FC6AC23B88B620081E77E /* kakaia WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4C0FC6AD23B88B620081E77E /* ContentView.swift */,
+				4C0FC6AF23B88B620081E77E /* HostingController.swift */,
+				4C0FC6B123B88B620081E77E /* ExtensionDelegate.swift */,
+				4C0FC6B323B88B620081E77E /* NotificationController.swift */,
+				4C0FC6B523B88B620081E77E /* NotificationView.swift */,
+				4C0FC6B723B88B620081E77E /* ComplicationController.swift */,
+				4C0FC6B923B88B630081E77E /* Assets.xcassets */,
+				4C0FC6BE23B88B630081E77E /* Info.plist */,
+				4C0FC6BF23B88B630081E77E /* PushNotificationPayload.apns */,
+				4C0FC6BB23B88B630081E77E /* Preview Content */,
+			);
+			path = "kakaia WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		4C0FC6BB23B88B630081E77E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				4C0FC6BC23B88B630081E77E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4C0FC69423B88B610081E77E /* kakaia */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C0FC6CA23B88B630081E77E /* Build configuration list for PBXNativeTarget "kakaia" */;
+			buildPhases = (
+				4C0FC69323B88B610081E77E /* Resources */,
+				4C0FC6C923B88B630081E77E /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C0FC69C23B88B610081E77E /* PBXTargetDependency */,
+			);
+			name = kakaia;
+			productName = kakaia;
+			productReference = 4C0FC69523B88B610081E77E /* kakaia.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		4C0FC69823B88B610081E77E /* kakaia WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C0FC6C623B88B630081E77E /* Build configuration list for PBXNativeTarget "kakaia WatchKit App" */;
+			buildPhases = (
+				4C0FC69723B88B610081E77E /* Resources */,
+				4C0FC6C523B88B630081E77E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4C0FC6AB23B88B620081E77E /* PBXTargetDependency */,
+			);
+			name = "kakaia WatchKit App";
+			productName = "kakaia WatchKit App";
+			productReference = 4C0FC69923B88B610081E77E /* kakaia WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		4C0FC6A723B88B620081E77E /* kakaia WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C0FC6C223B88B630081E77E /* Build configuration list for PBXNativeTarget "kakaia WatchKit Extension" */;
+			buildPhases = (
+				4C0FC6A423B88B620081E77E /* Sources */,
+				4C0FC6A523B88B620081E77E /* Frameworks */,
+				4C0FC6A623B88B620081E77E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "kakaia WatchKit Extension";
+			productName = "kakaia WatchKit Extension";
+			productReference = 4C0FC6A823B88B620081E77E /* kakaia WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C0FC68F23B88B610081E77E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = "Jeremy Andrews";
+				TargetAttributes = {
+					4C0FC69423B88B610081E77E = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					4C0FC69823B88B610081E77E = {
+						CreatedOnToolsVersion = 11.3;
+					};
+					4C0FC6A723B88B620081E77E = {
+						CreatedOnToolsVersion = 11.3;
+					};
+				};
+			};
+			buildConfigurationList = 4C0FC69223B88B610081E77E /* Build configuration list for PBXProject "kakaia" */;
+			compatibilityVersion = "Xcode 11.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4C0FC68E23B88B610081E77E;
+			productRefGroup = 4C0FC69623B88B610081E77E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4C0FC69423B88B610081E77E /* kakaia */,
+				4C0FC69823B88B610081E77E /* kakaia WatchKit App */,
+				4C0FC6A723B88B620081E77E /* kakaia WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4C0FC69323B88B610081E77E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C0FC69723B88B610081E77E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0FC6A223B88B620081E77E /* Assets.xcassets in Resources */,
+				4C0FC6A023B88B610081E77E /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4C0FC6A623B88B620081E77E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0FC6BD23B88B630081E77E /* Preview Assets.xcassets in Resources */,
+				4C0FC6BA23B88B630081E77E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4C0FC6A423B88B620081E77E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4C0FC6B023B88B620081E77E /* HostingController.swift in Sources */,
+				4C0FC6B423B88B620081E77E /* NotificationController.swift in Sources */,
+				4C0FC6CD23B8F1560081E77E /* ContentView.swift in Sources */,
+				4C0FC6B223B88B620081E77E /* ExtensionDelegate.swift in Sources */,
+				4C0FC6B623B88B620081E77E /* NotificationView.swift in Sources */,
+				4C0FC6B823B88B620081E77E /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4C0FC69C23B88B610081E77E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C0FC69823B88B610081E77E /* kakaia WatchKit App */;
+			targetProxy = 4C0FC69B23B88B610081E77E /* PBXContainerItemProxy */;
+		};
+		4C0FC6AB23B88B620081E77E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4C0FC6A723B88B620081E77E /* kakaia WatchKit Extension */;
+			targetProxy = 4C0FC6AA23B88B620081E77E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4C0FC69E23B88B610081E77E /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4C0FC69F23B88B610081E77E /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4C0FC6C023B88B630081E77E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4C0FC6C123B88B630081E77E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4C0FC6C323B88B630081E77E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"kakaia WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = C6RPS3BGXX;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "kakaia WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.amailbox.kakaia.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		4C0FC6C423B88B630081E77E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"kakaia WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = C6RPS3BGXX;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "kakaia WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = net.amailbox.kakaia.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		4C0FC6C723B88B630081E77E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C6RPS3BGXX;
+				IBSC_MODULE = kakaia_WatchKit_Extension;
+				INFOPLIST_FILE = "kakaia WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = net.amailbox.kakaia.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		4C0FC6C823B88B630081E77E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = C6RPS3BGXX;
+				IBSC_MODULE = kakaia_WatchKit_Extension;
+				INFOPLIST_FILE = "kakaia WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = net.amailbox.kakaia.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		4C0FC6CB23B88B630081E77E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6RPS3BGXX;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.amailbox.kakaia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		4C0FC6CC23B88B630081E77E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C6RPS3BGXX;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.amailbox.kakaia;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4C0FC69223B88B610081E77E /* Build configuration list for PBXProject "kakaia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C0FC6C023B88B630081E77E /* Debug */,
+				4C0FC6C123B88B630081E77E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C0FC6C223B88B630081E77E /* Build configuration list for PBXNativeTarget "kakaia WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C0FC6C323B88B630081E77E /* Debug */,
+				4C0FC6C423B88B630081E77E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C0FC6C623B88B630081E77E /* Build configuration list for PBXNativeTarget "kakaia WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C0FC6C723B88B630081E77E /* Debug */,
+				4C0FC6C823B88B630081E77E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4C0FC6CA23B88B630081E77E /* Build configuration list for PBXNativeTarget "kakaia" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4C0FC6CB23B88B630081E77E /* Debug */,
+				4C0FC6CC23B88B630081E77E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C0FC68F23B88B610081E77E /* Project object */;
+}
