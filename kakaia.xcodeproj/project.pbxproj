@@ -19,6 +19,8 @@
 		4C0FC6BA23B88B630081E77E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FC6B923B88B630081E77E /* Assets.xcassets */; };
 		4C0FC6BD23B88B630081E77E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C0FC6BC23B88B630081E77E /* Preview Assets.xcassets */; };
 		4C0FC6CD23B8F1560081E77E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6AD23B88B620081E77E /* ContentView.swift */; };
+		4C0FC6CF23B8FC730081E77E /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6CE23B8FC730081E77E /* AudioRecorder.swift */; };
+		4C0FC6D123B9028A0081E77E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6D023B9028A0081E77E /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,8 @@
 		4C0FC6BC23B88B630081E77E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4C0FC6BE23B88B630081E77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C0FC6BF23B88B630081E77E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		4C0FC6CE23B8FC730081E77E /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		4C0FC6D023B9028A0081E77E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,8 @@
 			isa = PBXGroup;
 			children = (
 				4C0FC6AD23B88B620081E77E /* ContentView.swift */,
+				4C0FC6CE23B8FC730081E77E /* AudioRecorder.swift */,
+				4C0FC6D023B9028A0081E77E /* Extensions.swift */,
 				4C0FC6AF23B88B620081E77E /* HostingController.swift */,
 				4C0FC6B123B88B620081E77E /* ExtensionDelegate.swift */,
 				4C0FC6B323B88B620081E77E /* NotificationController.swift */,
@@ -276,9 +282,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C0FC6B023B88B620081E77E /* HostingController.swift in Sources */,
+				4C0FC6CF23B8FC730081E77E /* AudioRecorder.swift in Sources */,
 				4C0FC6B423B88B620081E77E /* NotificationController.swift in Sources */,
 				4C0FC6CD23B8F1560081E77E /* ContentView.swift in Sources */,
 				4C0FC6B223B88B620081E77E /* ExtensionDelegate.swift in Sources */,
+				4C0FC6D123B9028A0081E77E /* Extensions.swift in Sources */,
 				4C0FC6B623B88B620081E77E /* NotificationView.swift in Sources */,
 				4C0FC6B823B88B620081E77E /* ComplicationController.swift in Sources */,
 			);

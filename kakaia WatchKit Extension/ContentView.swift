@@ -9,48 +9,43 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isListening = false
+    @ObservedObject var audioRecorder: AudioRecorder
 
     var body: some View {
-        ZStack {
-            if isListening {
-                RedCircle()
-                    .frame(width:100, height: 75)
-            }
-            else {
-                GreenCirle()
-                    .frame(width:100, height: 75)
-            }
-            
-            Button ( action: {
-                self.isListening.toggle()
-            }) {
-                Text("Kakaia")
-                    .offset(y: -50)
-                if isListening {
-                    Text("listening")
-                        .frame(width:75, height:75)
+        VStack {
+            Text("Kakaia")
+            if audioRecorder.recording == false {
+                Button(action: { self.audioRecorder.startRecording()}) {
+                    Image(systemName: "circle.fill")
+                        .resizable()
+                         .aspectRatio(contentMode: .fill)
+                         .frame(width: 100, height: 100)
+                         .clipped()
+                         .foregroundColor(.green)
+                         .padding(.bottom, 40)
+                }
+            } else {
+                ZStack {
+                    Button(action: { self.audioRecorder.stopRecording()}) {
+                        Image(systemName: "stop.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 100, height: 100)
+                            .clipped()
+                            .foregroundColor(.red)
+                            .padding(.bottom, 40)
+                    }
+                    Text("(listening)")
+                        .padding(.bottom, 40)
+
                 }
             }
-            .frame(width:75, height:90)
         }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
-    }
-}
-
-struct GreenCirle: View {
-    var body: some View {
-        Circle().fill(Color.green)
-    }
-}
-
-struct RedCircle: View {
-    var body: some View {
-        Circle().fill(Color.red)
+        ContentView(audioRecorder: AudioRecorder())
     }
 }
