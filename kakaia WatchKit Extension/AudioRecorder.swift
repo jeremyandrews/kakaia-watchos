@@ -23,6 +23,7 @@ class AudioRecorder: ObservableObject {
     }
     
     func startRecording() {
+        print("startRecording")
         let recordingSession = AVAudioSession.sharedInstance()
         do {
             try recordingSession.setCategory(.playAndRecord, mode: .default)
@@ -32,7 +33,7 @@ class AudioRecorder: ObservableObject {
         }
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let audioFilename = documentPath.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
+        let audioFilename = documentPath.appendingPathComponent("audio.flac")
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatFLAC),
@@ -52,8 +53,21 @@ class AudioRecorder: ObservableObject {
     }
     
     func stopRecording() {
+        print("stopRecording")
+
         audioRecorder.stop()
         recording = false
+        
+        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let audioFilename = documentPath.appendingPathComponent("audio.flac")
+        do {
+            let audioData = try Data(contentsOf: audioFilename)
+            let encodedString = audioData.base64EncodedString()
+            // @TODO: push to server
+            print(encodedString)
+        } catch {
+            print("ERROR")
+        }
     }
 
 }

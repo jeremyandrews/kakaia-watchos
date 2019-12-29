@@ -14,33 +14,38 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Kakaia")
+                .font(.title)
             if audioRecorder.recording == false {
                 Button(action: { self.audioRecorder.startRecording()}) {
                     Image(systemName: "circle.fill")
-                        .resizable()
+                         .resizable()
                          .aspectRatio(contentMode: .fill)
-                         .frame(width: 100, height: 100)
                          .clipped()
                          .foregroundColor(.green)
-                         .padding(.bottom, 40)
                 }
+                    .background(Color.black)
+                    .frame(width:125, height: 100)
             } else {
                 ZStack {
                     Button(action: { self.audioRecorder.stopRecording()}) {
                         Image(systemName: "stop.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
                             .clipped()
                             .foregroundColor(.red)
-                            .padding(.bottom, 40)
                     }
-                    Text("(listening)")
-                        .padding(.bottom, 40)
+                        .background(Color.black)
+                        .frame(width:125, height: 100)
 
+                    Text("(listening)")
+                        .padding(.bottom, 5)
                 }
+
             }
         }
+        .padding(.bottom, -20)
+        .frame(width: 150, height: 150)
+
     }
 }
 
