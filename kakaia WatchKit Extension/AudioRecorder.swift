@@ -64,7 +64,31 @@ class AudioRecorder: ObservableObject {
             let audioData = try Data(contentsOf: audioFilename)
             let encodedString = audioData.base64EncodedString()
             // @TODO: push to server
-            print(encodedString)
+            let dataString = encodedString.data(using: String.Encoding.utf8)
+            let audioToTextUrl = URL(string: "http://192.168.0.103:8088/convert/audio/text")!
+            var request = URLRequest(url: audioToTextUrl)
+            request.httpMethod = "POST"
+            request.httpBody = dataString
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data,
+                    let response = response as? HTTPURLResponse,
+                    error == nil else {                                              // check for fundamental networking error
+                    print("error", error ?? "Unknown error")
+                    return
+                }
+
+                guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
+                    print("statusCode should be 2xx, but is \(response.statusCode)")
+                    print("response = \(response)")
+                    return
+                }
+
+                let responseString = String(data: data, encoding: .utf8)
+                print("responseString = \(String(describing: responseString))")
+            }
+
+            task.resume()
         } catch {
             print("ERROR")
         }
