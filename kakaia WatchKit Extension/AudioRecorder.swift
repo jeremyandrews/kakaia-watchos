@@ -22,8 +22,13 @@ class AudioRecorder: ObservableObject {
         }
     }
     
+    var audio_as_text = "" {
+        didSet {
+            objectWillChange.send(self)
+        }
+    }
+    
     func startRecording() {
-        print("startRecording")
         let recordingSession = AVAudioSession.sharedInstance()
         do {
             try recordingSession.setCategory(.playAndRecord, mode: .default)
@@ -35,6 +40,7 @@ class AudioRecorder: ObservableObject {
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let audioFilename = documentPath.appendingPathComponent("audio.flac")
         
+        // Kakaia engine requires 16,000 Hz mono recording
         let settings = [
             AVFormatIDKey: Int(kAudioFormatFLAC),
             AVSampleRateKey: 16000,
@@ -46,6 +52,8 @@ class AudioRecorder: ObservableObject {
             audioRecorder.record()
 
             recording = true
+            
+            audio_as_text = ""
         } catch {
             print("Could not start recording")
         }
@@ -53,8 +61,6 @@ class AudioRecorder: ObservableObject {
     }
     
     func stopRecording() {
-        print("stopRecording")
-
         audioRecorder.stop()
         recording = false
         
@@ -63,12 +69,14 @@ class AudioRecorder: ObservableObject {
         do {
             let audioData = try Data(contentsOf: audioFilename)
             let encodedString = audioData.base64EncodedString()
-            // @TODO: push to server
             let dataString = encodedString.data(using: String.Encoding.utf8)
+            // @TODO: this needs to be configurable, not hard coded
             let audioToTextUrl = URL(string: "http://192.168.0.103:8088/convert/audio/text")!
             var request = URLRequest(url: audioToTextUrl)
             request.httpMethod = "POST"
             request.httpBody = dataString
+            
+            var responseString = ""
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data,
@@ -84,10 +92,9 @@ class AudioRecorder: ObservableObject {
                     return
                 }
 
-                let responseString = String(data: data, encoding: .utf8)
-                print("responseString = \(String(describing: responseString))")
+                responseString = (String(data: data, encoding: .utf8))!
+                self.audio_as_text = responseString
             }
-
             task.resume()
         } catch {
             print("ERROR")

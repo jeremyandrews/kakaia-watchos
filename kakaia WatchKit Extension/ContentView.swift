@@ -13,8 +13,13 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Text("Kakaia")
-                .font(.title)
+            if audioRecorder.audio_as_text.isEmpty {
+                Text("Kakaia")
+                    .frame(width: 150, height: 60)
+            } else {
+                Text(audioRecorder.audio_as_text)
+                    .frame(width: 150, height: 60)
+            }
             if audioRecorder.recording == false {
                 Button(action: { self.audioRecorder.startRecording()}) {
                     Image(systemName: "circle.fill")
@@ -24,7 +29,7 @@ struct ContentView: View {
                          .foregroundColor(.green)
                 }
                     .background(Color.black)
-                    .frame(width:125, height: 100)
+                    .frame(width:100, height: 100)
             } else {
                 ZStack {
                     Button(action: { self.audioRecorder.stopRecording()}) {
@@ -35,7 +40,7 @@ struct ContentView: View {
                             .foregroundColor(.red)
                     }
                         .background(Color.black)
-                        .frame(width:125, height: 100)
+                        .frame(width:100, height: 100)
 
                     Text("(listening)")
                         .padding(.bottom, 5)
