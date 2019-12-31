@@ -6,7 +6,7 @@ Kakaia strives to be a personal assistant supporting voice commands without send
 
 This client is still just a proof of concept. It currently makes hard-coded assumptions based on my personal development environments.
 
-The client requires that you are also running the [Kakaia engine]() on your local network. It provides a simple UI for recording your voice from an Apple Watch, sending the audio file to the Kakaia engine to convert to text.
+The client requires that you are also running the [Kakaia engine](https://github.com/jeremyandrews/kakaia) on your local network. It provides a simple UI for recording your voice from an Apple Watch, sending the audio file to the Kakaia engine to convert to text.
 
 The app currently has two modes:
 
