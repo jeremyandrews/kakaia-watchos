@@ -8,18 +8,28 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @ObservedObject var audioRecorder: AudioRecorder
+    @State private var showModal = false
 
     var body: some View {
         VStack {
             if audioRecorder.audio_as_text.isEmpty {
                 Text("Kakaia")
                     .frame(width: 150, height: 60)
+                    .padding()
             } else {
-                Text(audioRecorder.audio_as_text)
+                Button(action: { self.showModal.toggle() }) {
+                    Text("Kakaia")
+                }
                     .frame(width: 150, height: 60)
+                    .padding()
+                    .sheet(isPresented: $showModal) {
+                        ModalView(showModal: self.$showModal, audioRecorder: self.audioRecorder)
+                }
             }
+
             if audioRecorder.recording == 0 {
                 Button(action: { self.audioRecorder.startRecording()}) {
                     Image(systemName: "circle.fill")
@@ -42,25 +52,19 @@ struct ContentView: View {
                         .background(Color.black)
                         .frame(width:100, height: 100)
                     Text("(listening)")
-                        .padding(.bottom, 5)
+                        .padding()
                 }
             } else {
                 ZStack {
-                    Button(action: {}) {
-                        Image(systemName: "stop.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .clipped()
-                            .foregroundColor(.orange)
-                    }
-                        .background(Color.black)
+                    Image(systemName: "hand.raised.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .foregroundColor(.orange)
                         .frame(width:100, height: 100)
                     Text("(thinking)")
-                        .padding(.bottom, 5)
+                        .padding()
                 }
-
             }
-
         }
         .frame(width: 150, height: 150)
 
