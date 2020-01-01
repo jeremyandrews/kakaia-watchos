@@ -16,7 +16,7 @@ class AudioRecorder: ObservableObject {
 
     var audioRecorder: AVAudioRecorder!
     
-    var recording = false {
+    var recording = 0 {
         didSet {
             objectWillChange.send(self)
         }
@@ -51,7 +51,7 @@ class AudioRecorder: ObservableObject {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.record()
 
-            recording = true
+            recording = 1
             
             audio_as_text = ""
         } catch {
@@ -62,7 +62,7 @@ class AudioRecorder: ObservableObject {
     
     func stopRecording() {
         audioRecorder.stop()
-        recording = false
+        recording = 2
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let audioFilename = documentPath.appendingPathComponent("audio.flac")
@@ -94,6 +94,7 @@ class AudioRecorder: ObservableObject {
 
                 responseString = (String(data: data, encoding: .utf8))!
                 self.audio_as_text = responseString
+                self.recording = 0
             }
             task.resume()
         } catch {

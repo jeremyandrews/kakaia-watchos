@@ -20,7 +20,7 @@ struct ContentView: View {
                 Text(audioRecorder.audio_as_text)
                     .frame(width: 150, height: 60)
             }
-            if audioRecorder.recording == false {
+            if audioRecorder.recording == 0 {
                 Button(action: { self.audioRecorder.startRecording()}) {
                     Image(systemName: "circle.fill")
                          .resizable()
@@ -30,7 +30,7 @@ struct ContentView: View {
                 }
                     .background(Color.black)
                     .frame(width:100, height: 100)
-            } else {
+            } else if audioRecorder.recording == 1 {
                 ZStack {
                     Button(action: { self.audioRecorder.stopRecording()}) {
                         Image(systemName: "stop.fill")
@@ -41,12 +41,26 @@ struct ContentView: View {
                     }
                         .background(Color.black)
                         .frame(width:100, height: 100)
-
                     Text("(listening)")
+                        .padding(.bottom, 5)
+                }
+            } else {
+                ZStack {
+                    Button(action: {}) {
+                        Image(systemName: "stop.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .clipped()
+                            .foregroundColor(.orange)
+                    }
+                        .background(Color.black)
+                        .frame(width:100, height: 100)
+                    Text("(thinking)")
                         .padding(.bottom, 5)
                 }
 
             }
+
         }
         .frame(width: 150, height: 150)
 
