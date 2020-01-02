@@ -71,7 +71,7 @@ class AudioRecorder: ObservableObject {
             let encodedString = audioData.base64EncodedString()
             let dataString = encodedString.data(using: String.Encoding.utf8)
             // @TODO: this needs to be configurable, not hard coded
-            let audioToTextUrl = URL(string: "http://192.168.0.103:8088/convert/audio/text")!
+            let audioToTextUrl = URL(string: "http://10.10.200.126:8088/convert/audio/text")!
             var request = URLRequest(url: audioToTextUrl)
             request.httpMethod = "POST"
             request.httpBody = dataString
