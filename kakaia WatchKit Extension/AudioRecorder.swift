@@ -34,7 +34,7 @@ class AudioRecorder: ObservableObject {
             try recordingSession.setCategory(.record, mode: .spokenAudio)
             try recordingSession.setActive(true)
         } catch {
-            print("Failed to set up recording session")
+            print("Error: failed to set up recording session")
         }
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -55,7 +55,7 @@ class AudioRecorder: ObservableObject {
             
             audio_as_text = ""
         } catch {
-            print("Could not start recording")
+            print("Error: could not start recording")
         }
         
     }
@@ -70,30 +70,29 @@ class AudioRecorder: ObservableObject {
             let audioData = try Data(contentsOf: audioFilename)
             let encodedString = audioData.base64EncodedString()
             let dataString = encodedString.data(using: String.Encoding.utf8)
+            
             // @TODO: this needs to be configurable, not hard coded
-            let audioToTextUrl = URL(string: "http://10.10.200.126:8088/convert/audio/text")!
-            var request = URLRequest(url: audioToTextUrl)
-            request.httpMethod = "POST"
-            request.httpBody = dataString
+            guard let audioToTextUrl = URL(string: "http://10.10.200.126:8088/convert/audio/text") else {
+                print("Error: failed to create URL")
+                return
+            }
             
-            var responseString = ""
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data,
-                    let response = response as? HTTPURLResponse,
-                    error == nil else {                                              // check for fundamental networking error
-                    print("error", error ?? "Unknown error")
+            var sendAudioRequest = URLRequest(url: audioToTextUrl)
+            sendAudioRequest.httpMethod = "POST"
+            sendAudioRequest.httpBody = dataString
+            let session = URLSession.shared
+            let task = session.dataTask(with: sendAudioRequest) {
+                (data, response, error) in
+                guard error == nil else {
+                    print("Error: failed to POST audio file to Kakaia engine")
+                    print(error!)
                     return
                 }
-
-                guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
-                    print("statusCode should be 2xx, but is \(response.statusCode)")
-                    print("response = \(response)")
+                guard let responseData = data else {
+                    print("Error: no response from Kakaia engine")
                     return
                 }
-
-                responseString = (String(data: data, encoding: .utf8))!
-                self.audio_as_text = responseString
+                self.audio_as_text = (String(data: responseData, encoding: .utf8))!
                 self.recording = 0
             }
             task.resume()
