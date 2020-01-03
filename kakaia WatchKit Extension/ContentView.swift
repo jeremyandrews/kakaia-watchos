@@ -17,13 +17,13 @@ struct ContentView: View {
         VStack {
             if audioRecorder.audio_as_text.isEmpty {
                 Text("Kakaia")
-                    .frame(width: 100, height: 30)
+                    .frame(width: 100, height: 20)
                     .padding()
             } else {
                 Button(action: { self.showModal.toggle() }) {
                     Text("Kakaia")
                 }
-                    .frame(width: 100, height: 30)
+                    .frame(width: 100, height: 20)
                     .padding()
                     .sheet(isPresented: $showModal) {
                         ModalView(showModal: self.$showModal, audioRecorder: self.audioRecorder)
@@ -39,7 +39,7 @@ struct ContentView: View {
                          .foregroundColor(.green)
                 }
                     .background(Color.black)
-                    .frame(width:120, height: 120)
+                    .frame(width:100, height: 100)
             } else if audioRecorder.recording == 1 {
                 ZStack {
                     Button(action: { self.audioRecorder.stopRecording()}) {
@@ -50,7 +50,7 @@ struct ContentView: View {
                             .foregroundColor(.red)
                     }
                         .background(Color.black)
-                        .frame(width:120, height: 120)
+                        .frame(width:100, height: 100)
                     Text("(listening)")
                         .padding()
                 }
@@ -60,7 +60,7 @@ struct ContentView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .foregroundColor(.orange)
-                        .frame(width:120, height: 120)
+                        .frame(width:120, height: 100)
                     Text("(thinking)")
                         .padding()
                 }
