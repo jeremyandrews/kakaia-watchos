@@ -14,7 +14,7 @@ struct ModalView: View {
     @ObservedObject var audioRecorder: AudioRecorder
 
     var body: some View {
-        VStack {
+        ScrollView() {
             Text("Audio as text:")
                 .padding()
             Text(audioRecorder.audio_as_text)
