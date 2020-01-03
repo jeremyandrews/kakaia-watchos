@@ -73,7 +73,8 @@ class AudioRecorder: ObservableObject {
             
             // @TODO: this needs to be configurable, not hard coded
             guard let audioToTextUrl = URL(string: "http://10.10.200.126:8088/convert/audio/text") else {
-                print("Error: failed to create URL")
+                self.recording = 0
+                self.audio_as_text = String("Error: failed to create Kakaia engine URL")
                 return
             }
             
@@ -84,12 +85,14 @@ class AudioRecorder: ObservableObject {
             let task = session.dataTask(with: sendAudioRequest) {
                 (data, response, error) in
                 guard error == nil else {
-                    print("Error: failed to POST audio file to Kakaia engine")
+                    self.recording = 0
+                    self.audio_as_text = String("Error: failed to POST audio file to Kakaia engine")
                     print(error!)
                     return
                 }
                 guard let responseData = data else {
-                    print("Error: no response from Kakaia engine")
+                    self.recording = 0
+                    self.audio_as_text = String("Error: no response from Kakaia engine")
                     return
                 }
                 self.audio_as_text = (String(data: responseData, encoding: .utf8))!
