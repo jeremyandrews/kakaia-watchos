@@ -37,7 +37,8 @@ struct ContentView: View {
                          .aspectRatio(contentMode: .fill)
                          .clipped()
                          .foregroundColor(.green)
-                }
+                    }
+                    .buttonStyle(PlainButtonStyle())
                     .background(Color.black)
                     .frame(width:100, height: 100)
             } else if audioRecorder.recording == 1 {
@@ -49,8 +50,9 @@ struct ContentView: View {
                             .clipped()
                             .foregroundColor(.red)
                     }
-                        .background(Color.black)
-                        .frame(width:100, height: 100)
+                    .buttonStyle(PlainButtonStyle())
+                    .background(Color.black)
+                    .frame(width:100, height: 100)
                     Text("(listening)")
                         .padding()
                 }
