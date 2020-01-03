@@ -14,11 +14,11 @@ struct ModalView: View {
     @ObservedObject var audioRecorder: AudioRecorder
 
     var body: some View {
-        ScrollView() {
-            Text("Audio as text:")
-                .padding()
-            Text(audioRecorder.audio_as_text)
-                .padding()
+        List {
+            Section(header: Text("Audio as text:")) {
+                Text(audioRecorder.audio_as_text)
+                    .padding()
+            }
         }
     }
 }
