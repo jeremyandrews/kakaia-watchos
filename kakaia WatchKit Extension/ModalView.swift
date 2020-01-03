@@ -17,7 +17,6 @@ struct ModalView: View {
         List {
             Section(header: Text("Audio as text:")) {
                 Text(audioRecorder.audio_as_text)
-                    .padding()
             }
         }
     }
