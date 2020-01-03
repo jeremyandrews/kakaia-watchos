@@ -8,7 +8,7 @@ This client is still just a proof of concept. It currently makes hard-coded assu
 
 The client requires that you are also running the [Kakaia engine](https://github.com/jeremyandrews/kakaia) on your local network. It provides a simple UI for recording your voice from an Apple Watch, sending the audio file to the Kakaia engine to convert to text.
 
-The app currently has two modes:
+The app is currently just a proof of concept, and has 4 simple screens:
 
 ### Standby
 
@@ -22,11 +22,24 @@ The app is recording audio:
 
 ![Kakaia watchOS app: Listening](/images/listening.png?raw=true "Listening: Kakaia client")
 
-Currently the app records continuously until you press the big red button. In the background it will then encode the audio file and push it to your local Kakaia engine.
+Currently the app records continuously until you press the big red button.
+
+### Thinking
+
+The app is encoding the audio, sending it to the Kakaia engine, and waiting for a response:
+
+![Kakaia watchOS app: Thinking](/images/thinking.png?raw=true "Thinking: Kakaia client")
+
+### Text
+
+Once the Kakaia engine returns the audio as text, the Kakaia text at the top of the screen turns into a button. Click it to see the text version of your spoken audio:
+
+![Kakaia watchOS app: Text](/images/text.png?raw=true "Text: Kakaia client")
+
 
 ### Notes
 
-This is my first watchOS app. I greatly appreciate contributions!
+The app is currently a proof of concept with limited functionality. I greatly appreciate contributions!
 
 ## Roadmap
 
