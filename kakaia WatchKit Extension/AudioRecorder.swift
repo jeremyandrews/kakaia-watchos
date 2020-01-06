@@ -13,20 +13,18 @@ import AVFoundation
 
 class AudioRecorder: ObservableObject {
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
-
     var audioRecorder: AVAudioRecorder!
-    
     var recording = 0 {
         didSet {
             objectWillChange.send(self)
         }
     }
-    
-    var audio_as_text = "" {
+    var audio_as_text: String = "" {
         didSet {
             objectWillChange.send(self)
         }
     }
+    private var cancellable: AnyCancellable?
     
     func startRecording() {
         let recordingSession = AVAudioSession.sharedInstance()
@@ -60,9 +58,18 @@ class AudioRecorder: ObservableObject {
         
     }
     
+    enum KakaiaError: Error {
+        case empty
+        case detail(String)
+    }
+    
     func stopRecording() {
         audioRecorder.stop()
         recording = 2
+        
+        enum HTTPError: LocalizedError {
+            case statusCode
+        }
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let audioFilename = documentPath.appendingPathComponent("audio.flac")
@@ -81,25 +88,35 @@ class AudioRecorder: ObservableObject {
             var sendAudioRequest = URLRequest(url: audioToTextUrl)
             sendAudioRequest.httpMethod = "POST"
             sendAudioRequest.httpBody = dataString
-            let session = URLSession.shared
-            let task = session.dataTask(with: sendAudioRequest) {
-                (data, response, error) in
-                guard error == nil else {
-                    self.recording = 0
-                    self.audio_as_text = String("Error: failed to POST audio file to Kakaia engine")
-                    print(error!)
-                    return
+            self.cancellable = URLSession.shared.dataTaskPublisher(for: sendAudioRequest)
+            .tryMap { data, response -> Data in
+                guard let httpResponse = response as? HTTPURLResponse,
+                    httpResponse.statusCode == 200 else {
+                        self.audio_as_text = String("Error: failed to POST audio file to Kakaia engine")
+                        self.recording = 0
+                        throw KakaiaError.detail("Error: failed to POST audio to Kakaia engine")
                 }
-                guard let responseData = data else {
-                    self.recording = 0
-                    self.audio_as_text = String("Error: no response from Kakaia engine")
-                    return
-                }
-                self.audio_as_text = (String(data: responseData, encoding: .utf8))!
-                self.recording = 0
+                return data
             }
-            task.resume()
+            .receive(on: RunLoop.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                    case .finished:
+                        break
+                    case .failure(let anError):
+                        self.audio_as_text = String("Error: " + String(describing: anError))
+                        break
+                }
+                self.recording = 0
+                if self.audio_as_text.isEmpty {
+                    self.audio_as_text = String("Error: empty response from Kakaia engine")
+                }
+            }, receiveValue: { value in
+                self.audio_as_text = (String(data: value, encoding: .utf8))!
+            })
         } catch {
+            self.audio_as_text = String("Error: failed to parse audio file")
+            self.recording = 0
             print("ERROR")
         }
     }
