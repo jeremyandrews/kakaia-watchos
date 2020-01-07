@@ -11,19 +11,21 @@ import SwiftUI
 
 struct ModalView: View {
     @Binding var showModal: Bool
-    @ObservedObject var audioRecorder: AudioRecorder
+    @State var audio_as_text: String
 
     var body: some View {
         List {
             Section(header: Text("Audio as text:")) {
-                Text(audioRecorder.audio_as_text)
+                Text(audio_as_text)
             }
         }
+        .padding()
+        .navigationBarTitle("Dismiss")
     }
 }
 
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalView(showModal: .constant(true), audioRecorder: AudioRecorder())
+        ModalView(showModal: .constant(true), audio_as_text: String("this is an example"))
     }
 }

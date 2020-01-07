@@ -58,17 +58,17 @@ class AudioRecorder: ObservableObject {
         
     }
     
-    enum KakaiaError: Error {
-        case empty
-        case detail(String)
-    }
-    
     func stopRecording() {
         audioRecorder.stop()
         recording = 2
         
         enum HTTPError: LocalizedError {
             case statusCode
+        }
+        
+        enum KakaiaError: Error {
+            case empty
+            case detail(String)
         }
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -108,16 +108,12 @@ class AudioRecorder: ObservableObject {
                         break
                 }
                 self.recording = 0
-                if self.audio_as_text.isEmpty {
-                    self.audio_as_text = String("Error: empty response from Kakaia engine")
-                }
             }, receiveValue: { value in
                 self.audio_as_text = (String(data: value, encoding: .utf8))!
             })
         } catch {
             self.audio_as_text = String("Error: failed to parse audio file")
             self.recording = 0
-            print("ERROR")
         }
     }
 

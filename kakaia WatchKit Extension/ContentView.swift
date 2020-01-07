@@ -26,7 +26,7 @@ struct ContentView: View {
                     .frame(width: 100, height: 20)
                     .padding()
                     .sheet(isPresented: $showModal) {
-                        ModalView(showModal: self.$showModal, audioRecorder: self.audioRecorder)
+                        ModalView(showModal: self.$showModal, audio_as_text: self.audioRecorder.audio_as_text)
                 }
             }
 
