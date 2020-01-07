@@ -24,8 +24,12 @@ class AudioRecorder: ObservableObject {
             objectWillChange.send(self)
         }
     }
-    private var cancellable: AnyCancellable?
-    
+    var showModal: Bool = false {
+        didSet {
+            objectWillChange.send(self)
+        }
+    }
+
     func startRecording() {
         let recordingSession = AVAudioSession.sharedInstance()
         do {
@@ -58,6 +62,8 @@ class AudioRecorder: ObservableObject {
         
     }
     
+    private var cancellable: AnyCancellable?
+
     func stopRecording() {
         audioRecorder.stop()
         recording = 2
@@ -108,6 +114,7 @@ class AudioRecorder: ObservableObject {
                         break
                 }
                 self.recording = 0
+                self.showModal = true
             }, receiveValue: { value in
                 self.audio_as_text = (String(data: value, encoding: .utf8))!
             })

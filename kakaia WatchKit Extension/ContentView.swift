@@ -11,7 +11,6 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var audioRecorder: AudioRecorder
-    @State private var showModal = false
 
     var body: some View {
         VStack {
@@ -20,13 +19,13 @@ struct ContentView: View {
                     .frame(width: 100, height: 20)
                     .padding()
             } else {
-                Button(action: { self.showModal.toggle() }) {
+                Button(action: { self.audioRecorder.showModal.toggle() }) {
                     Text("Kakaia")
                 }
                     .frame(width: 100, height: 20)
                     .padding()
-                    .sheet(isPresented: $showModal) {
-                        ModalView(showModal: self.$showModal, audio_as_text: self.audioRecorder.audio_as_text)
+                .sheet(isPresented: $audioRecorder.showModal) {
+                    ModalView(showModal: self.$audioRecorder.showModal, audio_as_text: self.audioRecorder.audio_as_text)
                 }
             }
 
@@ -43,7 +42,7 @@ struct ContentView: View {
                     .frame(width:100, height: 100)
             } else if audioRecorder.recording == 1 {
                 ZStack {
-                    Button(action: { self.audioRecorder.stopRecording()}) {
+                    Button(action: {  self.audioRecorder.stopRecording()}) {
                         Image(systemName: "stop.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
@@ -69,6 +68,9 @@ struct ContentView: View {
             }
         }
         .frame(width: 150, height: 150)
+        .sheet(isPresented: $audioRecorder.showModal) {
+            ModalView(showModal: self.$audioRecorder.showModal, audio_as_text: self.audioRecorder.audio_as_text)
+        }
 
     }
 }
