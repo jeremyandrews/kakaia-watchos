@@ -14,7 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if audioRecorder.audio_as_text.isEmpty {
+            if audioRecorder.kakaia_response.raw.isEmpty {
                 Text("Kakaia")
                     .frame(width: 100, height: 20)
                     .padding()
@@ -25,7 +25,7 @@ struct ContentView: View {
                     .frame(width: 100, height: 20)
                     .padding()
                 .sheet(isPresented: $audioRecorder.showModal) {
-                    ModalView(showModal: self.$audioRecorder.showModal, audio_as_text: self.audioRecorder.audio_as_text)
+                    ModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response)
                 }
             }
 
@@ -69,7 +69,7 @@ struct ContentView: View {
         }
         .frame(width: 150, height: 150)
         .sheet(isPresented: $audioRecorder.showModal) {
-            ModalView(showModal: self.$audioRecorder.showModal, audio_as_text: self.audioRecorder.audio_as_text)
+            ModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response)
         }
 
     }

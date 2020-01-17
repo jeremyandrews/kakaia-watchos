@@ -11,6 +11,24 @@ import SwiftUI
 import Combine
 import AVFoundation
 
+struct KakaiaResponse: Decodable {
+    let command: String
+    let parameter: Int64
+    let human: String
+    let raw: String
+    
+    init(command: String? = "none",
+         parameter: Int64? = 0,
+         human: String? = "empty",
+         raw: String? = "") {
+        
+        self.command = command!
+        self.parameter = parameter!
+        self.human = human!
+        self.raw = raw!
+    }
+}
+
 class AudioRecorder: ObservableObject {
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     var audioRecorder: AVAudioRecorder!
@@ -19,7 +37,7 @@ class AudioRecorder: ObservableObject {
             objectWillChange.send(self)
         }
     }
-    var audio_as_text: String = "" {
+    var kakaia_response: KakaiaResponse = KakaiaResponse () {
         didSet {
             objectWillChange.send(self)
         }
@@ -52,10 +70,7 @@ class AudioRecorder: ObservableObject {
         do {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.record()
-
             recording = 1
-            
-            audio_as_text = ""
         } catch {
             print("Error: could not start recording")
         }
@@ -64,6 +79,7 @@ class AudioRecorder: ObservableObject {
     
     private var cancellable: AnyCancellable?
 
+    
     func stopRecording() {
         audioRecorder.stop()
         recording = 2
@@ -87,7 +103,7 @@ class AudioRecorder: ObservableObject {
             // @TODO: this needs to be configurable, not hard coded
             guard let audioToTextUrl = URL(string: "http://10.10.200.126:8088/convert/audio/text") else {
                 self.recording = 0
-                self.audio_as_text = String("Error: failed to create Kakaia engine URL")
+                self.kakaia_response = KakaiaResponse(raw: "Error: failed to create Kakaia engine URL")
                 return
             }
             
@@ -98,28 +114,29 @@ class AudioRecorder: ObservableObject {
             .tryMap { data, response -> Data in
                 guard let httpResponse = response as? HTTPURLResponse,
                     httpResponse.statusCode == 200 else {
-                        self.audio_as_text = String("Error: failed to POST audio file to Kakaia engine")
+                        self.kakaia_response = KakaiaResponse(raw: "Error: failed to POST audio file to Kakaia engine")
                         self.recording = 0
                         throw KakaiaError.detail("Error: failed to POST audio to Kakaia engine")
                 }
                 return data
             }
             .receive(on: RunLoop.main)
+            .decode(type: KakaiaResponse.self, decoder: JSONDecoder())
             .sink(receiveCompletion: { completion in
                 switch completion {
                     case .finished:
                         break
                     case .failure(let anError):
-                        self.audio_as_text = String("Error: " + String(describing: anError))
+                        self.kakaia_response = KakaiaResponse(raw: "Error: " + String(describing: anError))
                         break
                 }
                 self.recording = 0
                 self.showModal = true
             }, receiveValue: { value in
-                self.audio_as_text = (String(data: value, encoding: .utf8))!
+                self.kakaia_response = value
             })
         } catch {
-            self.audio_as_text = String("Error: failed to parse audio file")
+            self.kakaia_response = KakaiaResponse(raw: "Error: failed to parse audio file")
             self.recording = 0
         }
     }

@@ -11,12 +11,15 @@ import SwiftUI
 
 struct ModalView: View {
     @Binding var showModal: Bool
-    @State var audio_as_text: String
+    @State var kakaia_response: KakaiaResponse
 
     var body: some View {
         List {
-            Section(header: Text("Audio as text:")) {
-                Text(audio_as_text)
+            Section(header: Text("Command:")) {
+                Text(kakaia_response.human)
+            }
+            Section(header: Text("Raw:")) {
+                Text(kakaia_response.raw)
             }
         }
         .padding()
@@ -26,6 +29,6 @@ struct ModalView: View {
 
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalView(showModal: .constant(true), audio_as_text: String("this is an example"))
+        ModalView(showModal: .constant(true), kakaia_response: KakaiaResponse(raw: "this is an example"))
     }
 }
