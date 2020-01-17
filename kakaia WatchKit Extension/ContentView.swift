@@ -18,6 +18,15 @@ struct ContentView: View {
                 Text("Kakaia")
                     .frame(width: 100, height: 20)
                     .padding()
+            } else if audioRecorder.kakaia_error {
+                Button(action: { self.audioRecorder.showModal.toggle() }) {
+                    Text("Kakaia")
+                }
+                    .frame(width: 100, height: 20)
+                    .padding()
+                .sheet(isPresented: $audioRecorder.showModal) {
+                    ErrorModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response)
+                }
             } else {
                 Button(action: { self.audioRecorder.showModal.toggle() }) {
                     Text("Kakaia")
@@ -25,7 +34,7 @@ struct ContentView: View {
                     .frame(width: 100, height: 20)
                     .padding()
                 .sheet(isPresented: $audioRecorder.showModal) {
-                    ModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response)
+                    TimerModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response, timeRemaining: self.audioRecorder.kakaia_response.parameter)
                 }
             }
 
@@ -69,7 +78,8 @@ struct ContentView: View {
         }
         .frame(width: 150, height: 150)
         .sheet(isPresented: $audioRecorder.showModal) {
-            ModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response)
+            TimerModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response,
+                           timeRemaining: self.audioRecorder.kakaia_response.parameter)
         }
 
     }

@@ -42,6 +42,11 @@ class AudioRecorder: ObservableObject {
             objectWillChange.send(self)
         }
     }
+    var kakaia_error: Bool = false {
+        didSet {
+            objectWillChange.send(self)
+        }
+    }
     var showModal: Bool = false {
         didSet {
             objectWillChange.send(self)
@@ -115,6 +120,7 @@ class AudioRecorder: ObservableObject {
                 guard let httpResponse = response as? HTTPURLResponse,
                     httpResponse.statusCode == 200 else {
                         self.kakaia_response = KakaiaResponse(raw: "Error: failed to POST audio file to Kakaia engine")
+                        self.kakaia_error = true
                         self.recording = 0
                         throw KakaiaError.detail("Error: failed to POST audio to Kakaia engine")
                 }
@@ -128,15 +134,20 @@ class AudioRecorder: ObservableObject {
                         break
                     case .failure(let anError):
                         self.kakaia_response = KakaiaResponse(raw: "Error: " + String(describing: anError))
+                        self.kakaia_error = true
                         break
                 }
                 self.recording = 0
                 self.showModal = true
+                if self.kakaia_response.parameter == 0 {
+                    self.kakaia_error = true
+                }
             }, receiveValue: { value in
                 self.kakaia_response = value
             })
         } catch {
             self.kakaia_response = KakaiaResponse(raw: "Error: failed to parse audio file")
+            self.kakaia_error = true
             self.recording = 0
         }
     }
