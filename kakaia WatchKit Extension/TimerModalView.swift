@@ -12,7 +12,7 @@ import SwiftUI
 struct TimerModalView: View {
     @Binding var showModal: Bool
     @State var kakaia_response: KakaiaResponse
-    @State var timeRemaining: Int64
+    @State var timeRemaining: Double
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
@@ -39,6 +39,6 @@ struct TimerModalView: View {
 
 struct TimerModalView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerModalView(showModal: .constant(true), kakaia_response: KakaiaResponse(parameter: 180, human: "set timer for 180 seconds", raw: "set a three minute timer"), timeRemaining: 180)
+        TimerModalView(showModal: .constant(true), kakaia_response: KakaiaResponse(human: "set timer for 180 seconds", raw: "set a three minute timer", result: 180.0), timeRemaining: 180)
     }
 }

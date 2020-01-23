@@ -18,23 +18,24 @@ struct ContentView: View {
                 Text("Kakaia")
                     .frame(width: 100, height: 20)
                     .padding()
+                /*
             } else if audioRecorder.kakaia_error {
-                Button(action: { self.audioRecorder.showModal.toggle() }) {
+                Button(action: { self.audioRecorder.showErrorModal.toggle() }) {
                     Text("Kakaia")
                 }
-                    .frame(width: 100, height: 20)
-                    .padding()
-                .sheet(isPresented: $audioRecorder.showModal) {
-                    ErrorModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response)
-                }
+                .frame(width: 100, height: 20)
+                .padding()
+                .sheet(isPresented: $audioRecorder.showErrorModal) {
+                    ErrorModalView(showModal: self.$audioRecorder.showErrorModal, kakaia_response: self.audioRecorder.kakaia_response)
+                }*/
             } else {
-                Button(action: { self.audioRecorder.showModal.toggle() }) {
+                Button(action: { self.audioRecorder.showTimerModal.toggle() }) {
                     Text("Kakaia")
                 }
-                    .frame(width: 100, height: 20)
-                    .padding()
-                .sheet(isPresented: $audioRecorder.showModal) {
-                    TimerModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response, timeRemaining: self.audioRecorder.kakaia_response.parameter)
+                .frame(width: 100, height: 20)
+                .padding()
+                .sheet(isPresented: $audioRecorder.showTimerModal) {
+                    TimerModalView(showModal: self.$audioRecorder.showTimerModal, kakaia_response: self.audioRecorder.kakaia_response, timeRemaining: self.audioRecorder.kakaia_response.result)
                 }
             }
 
@@ -77,11 +78,13 @@ struct ContentView: View {
             }
         }
         .frame(width: 150, height: 150)
-        .sheet(isPresented: $audioRecorder.showModal) {
-            TimerModalView(showModal: self.$audioRecorder.showModal, kakaia_response: self.audioRecorder.kakaia_response,
-                           timeRemaining: self.audioRecorder.kakaia_response.parameter)
+            /*
+        .sheet(isPresented: $audioRecorder.showErrorModal) {
+            ErrorModalView(showModal: self.$audioRecorder.showErrorModal, kakaia_response: self.audioRecorder.kakaia_response)
+        }*/
+        .sheet(isPresented: $audioRecorder.showTimerModal) {
+            TimerModalView(showModal: self.$audioRecorder.showTimerModal, kakaia_response: self.audioRecorder.kakaia_response, timeRemaining: self.audioRecorder.kakaia_response.result)
         }
-
     }
 }
 
