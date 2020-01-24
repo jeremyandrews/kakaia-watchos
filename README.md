@@ -30,11 +30,18 @@ The app is encoding the audio, sending it to the Kakaia engine, and waiting for 
 
 ![Kakaia watchOS app: Thinking](/images/thinking.png?raw=true "Thinking: Kakaia client")
 
-### Text
+### Math
+
+The Kakaia engine recognizes a few spoken commands. Here's the output from it recognizing a simple math request.
+
+![Kakaia watchOS app: Math](/images/math.png?raw=true "Math: Kakaia client")
+
+### Text (OLD)
 
 Once the Kakaia engine returns the audio as text, the Kakaia text at the top of the screen turns into a button. Click it to see the text version of your spoken audio:
 
 ![Kakaia watchOS app: Text](/images/text.png?raw=true "Text: Kakaia client")
+
 
 
 ### Notes
@@ -59,7 +66,7 @@ Add support for setting timers.
 
 Kakaia watchOS app:
 
-- parse returned JSON, set timer when the command is received
+- parse returned JSON, set timer when the command is received (done)
 - display errors if no command was matched
 - add complication for recording audio from watch-face
 - submit to App Store
