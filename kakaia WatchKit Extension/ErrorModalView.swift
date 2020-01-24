@@ -1,5 +1,5 @@
 //
-//  ModalView.swift
+//  ErrorModalView.swift
 //  kakaia WatchKit Extension
 //
 //  Created by Jeremy Andrews on 1/1/20.
@@ -9,14 +9,14 @@
 import SwiftUI
 
 
-struct ModalView: View {
+struct ErrorModalView: View {
     @Binding var showModal: Bool
-    @State var audio_as_text: String
+    @State var kakaia_response: KakaiaResponse
 
     var body: some View {
         List {
-            Section(header: Text("Audio as text:")) {
-                Text(audio_as_text)
+            Section(header: Text("Not understood:")) {
+                Text(kakaia_response.raw)
             }
         }
         .padding()
@@ -24,8 +24,8 @@ struct ModalView: View {
     }
 }
 
-struct ModalView_Previews: PreviewProvider {
+struct ErrorModalView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalView(showModal: .constant(true), audio_as_text: String("this is an example"))
+        ErrorModalView(showModal: .constant(true), kakaia_response: KakaiaResponse(raw: "spoken command here"))
     }
 }

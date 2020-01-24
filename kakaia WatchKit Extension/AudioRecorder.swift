@@ -11,6 +11,24 @@ import SwiftUI
 import Combine
 import AVFoundation
 
+struct KakaiaResponse: Decodable {
+    let command: String
+    let human: String
+    let raw: String
+    let result: Double
+
+    init(command: String? = "none",
+         human: String? = "empty",
+         raw: String? = "",
+         result: Double? = 0.0) {
+        
+        self.command = command!
+        self.human = human!
+        self.raw = raw!
+        self.result = result!
+    }
+}
+
 class AudioRecorder: ObservableObject {
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     var audioRecorder: AVAudioRecorder!
@@ -19,17 +37,27 @@ class AudioRecorder: ObservableObject {
             objectWillChange.send(self)
         }
     }
-    var audio_as_text: String = "" {
+    var kakaia_response: KakaiaResponse = KakaiaResponse () {
         didSet {
             objectWillChange.send(self)
         }
     }
-    var showModal: Bool = false {
+    var kakaia_error: Bool = false {
         didSet {
             objectWillChange.send(self)
         }
     }
-
+    var showErrorModal: Bool = false {
+        didSet {
+            objectWillChange.send(self)
+        }
+    }
+    var showTimerModal: Bool = false {
+        didSet {
+            objectWillChange.send(self)
+        }
+    }
+    
     func startRecording() {
         let recordingSession = AVAudioSession.sharedInstance()
         do {
@@ -52,10 +80,7 @@ class AudioRecorder: ObservableObject {
         do {
             audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
             audioRecorder.record()
-
             recording = 1
-            
-            audio_as_text = ""
         } catch {
             print("Error: could not start recording")
         }
@@ -64,6 +89,7 @@ class AudioRecorder: ObservableObject {
     
     private var cancellable: AnyCancellable?
 
+    
     func stopRecording() {
         audioRecorder.stop()
         recording = 2
@@ -87,7 +113,9 @@ class AudioRecorder: ObservableObject {
             // @TODO: this needs to be configurable, not hard coded
             guard let audioToTextUrl = URL(string: "http://10.10.200.126:8088/convert/audio/text") else {
                 self.recording = 0
-                self.audio_as_text = String("Error: failed to create Kakaia engine URL")
+                self.kakaia_error = true
+                self.showErrorModal = true
+                self.kakaia_response = KakaiaResponse(raw: "Error: failed to create Kakaia engine URL")
                 return
             }
             
@@ -98,28 +126,44 @@ class AudioRecorder: ObservableObject {
             .tryMap { data, response -> Data in
                 guard let httpResponse = response as? HTTPURLResponse,
                     httpResponse.statusCode == 200 else {
-                        self.audio_as_text = String("Error: failed to POST audio file to Kakaia engine")
                         self.recording = 0
+                        self.kakaia_error = true
+                        self.showErrorModal = true
+                        self.kakaia_response = KakaiaResponse(raw: "Error: failed to POST audio file to Kakaia engine")
                         throw KakaiaError.detail("Error: failed to POST audio to Kakaia engine")
                 }
                 return data
             }
             .receive(on: RunLoop.main)
+            .decode(type: KakaiaResponse.self, decoder: JSONDecoder())
             .sink(receiveCompletion: { completion in
                 switch completion {
                     case .finished:
                         break
                     case .failure(let anError):
-                        self.audio_as_text = String("Error: " + String(describing: anError))
+                        self.showErrorModal = true
+                        self.kakaia_error = true
+                        self.kakaia_response = KakaiaResponse(raw: "Error: " + String(describing: anError))
                         break
                 }
                 self.recording = 0
-                self.showModal = true
+                if self.kakaia_response.result == 0.0 {
+                    self.kakaia_error = true
+                    self.showErrorModal = true
+                    self.showTimerModal = false
+                }
+                else {
+                    self.kakaia_error = false
+                    self.showErrorModal = false
+                    self.showTimerModal = true
+                }
             }, receiveValue: { value in
-                self.audio_as_text = (String(data: value, encoding: .utf8))!
+                self.kakaia_response = value
             })
         } catch {
-            self.audio_as_text = String("Error: failed to parse audio file")
+            self.kakaia_response = KakaiaResponse(raw: "Error: failed to parse audio file")
+            self.showErrorModal = true
+            self.kakaia_error = true
             self.recording = 0
         }
     }

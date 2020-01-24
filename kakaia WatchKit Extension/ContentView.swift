@@ -14,18 +14,28 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if audioRecorder.audio_as_text.isEmpty {
+            if audioRecorder.kakaia_response.raw.isEmpty {
                 Text("Kakaia")
                     .frame(width: 100, height: 20)
                     .padding()
-            } else {
-                Button(action: { self.audioRecorder.showModal.toggle() }) {
+                /*
+            } else if audioRecorder.kakaia_error {
+                Button(action: { self.audioRecorder.showErrorModal.toggle() }) {
                     Text("Kakaia")
                 }
-                    .frame(width: 100, height: 20)
-                    .padding()
-                .sheet(isPresented: $audioRecorder.showModal) {
-                    ModalView(showModal: self.$audioRecorder.showModal, audio_as_text: self.audioRecorder.audio_as_text)
+                .frame(width: 100, height: 20)
+                .padding()
+                .sheet(isPresented: $audioRecorder.showErrorModal) {
+                    ErrorModalView(showModal: self.$audioRecorder.showErrorModal, kakaia_response: self.audioRecorder.kakaia_response)
+                }*/
+            } else {
+                Button(action: { self.audioRecorder.showTimerModal.toggle() }) {
+                    Text("Kakaia")
+                }
+                .frame(width: 100, height: 20)
+                .padding()
+                .sheet(isPresented: $audioRecorder.showTimerModal) {
+                    TimerModalView(showModal: self.$audioRecorder.showTimerModal, kakaia_response: self.audioRecorder.kakaia_response, timeRemaining: self.audioRecorder.kakaia_response.result)
                 }
             }
 
@@ -68,10 +78,13 @@ struct ContentView: View {
             }
         }
         .frame(width: 150, height: 150)
-        .sheet(isPresented: $audioRecorder.showModal) {
-            ModalView(showModal: self.$audioRecorder.showModal, audio_as_text: self.audioRecorder.audio_as_text)
+            /*
+        .sheet(isPresented: $audioRecorder.showErrorModal) {
+            ErrorModalView(showModal: self.$audioRecorder.showErrorModal, kakaia_response: self.audioRecorder.kakaia_response)
+        }*/
+        .sheet(isPresented: $audioRecorder.showTimerModal) {
+            TimerModalView(showModal: self.$audioRecorder.showTimerModal, kakaia_response: self.audioRecorder.kakaia_response, timeRemaining: self.audioRecorder.kakaia_response.result)
         }
-
     }
 }
 

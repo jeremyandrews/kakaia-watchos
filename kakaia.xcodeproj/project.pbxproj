@@ -21,7 +21,8 @@
 		4C0FC6CD23B8F1560081E77E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6AD23B88B620081E77E /* ContentView.swift */; };
 		4C0FC6CF23B8FC730081E77E /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6CE23B8FC730081E77E /* AudioRecorder.swift */; };
 		4C0FC6D123B9028A0081E77E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0FC6D023B9028A0081E77E /* Extensions.swift */; };
-		4C4D07B023BD0C82000FACDC /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4D07AF23BD0C82000FACDC /* ModalView.swift */; };
+		4C4D07B023BD0C82000FACDC /* ErrorModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4D07AF23BD0C82000FACDC /* ErrorModalView.swift */; };
+		4CE649E023D21B8F002E10FD /* TimerModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE649DF23D21B8F002E10FD /* TimerModalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,7 +86,8 @@
 		4C0FC6BF23B88B630081E77E /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		4C0FC6CE23B8FC730081E77E /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		4C0FC6D023B9028A0081E77E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		4C4D07AF23BD0C82000FACDC /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		4C4D07AF23BD0C82000FACDC /* ErrorModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorModalView.swift; sourceTree = "<group>"; };
+		4CE649DF23D21B8F002E10FD /* TimerModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				4C0FC6AD23B88B620081E77E /* ContentView.swift */,
-				4C4D07AF23BD0C82000FACDC /* ModalView.swift */,
+				4C4D07AF23BD0C82000FACDC /* ErrorModalView.swift */,
+				4CE649DF23D21B8F002E10FD /* TimerModalView.swift */,
 				4C0FC6CE23B8FC730081E77E /* AudioRecorder.swift */,
 				4C0FC6D023B9028A0081E77E /* Extensions.swift */,
 				4C0FC6AF23B88B620081E77E /* HostingController.swift */,
@@ -290,8 +293,9 @@
 				4C0FC6CD23B8F1560081E77E /* ContentView.swift in Sources */,
 				4C0FC6B223B88B620081E77E /* ExtensionDelegate.swift in Sources */,
 				4C0FC6D123B9028A0081E77E /* Extensions.swift in Sources */,
-				4C4D07B023BD0C82000FACDC /* ModalView.swift in Sources */,
+				4C4D07B023BD0C82000FACDC /* ErrorModalView.swift in Sources */,
 				4C0FC6B623B88B620081E77E /* NotificationView.swift in Sources */,
+				4CE649E023D21B8F002E10FD /* TimerModalView.swift in Sources */,
 				4C0FC6B823B88B620081E77E /* ComplicationController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
